@@ -74,3 +74,4 @@ fun contentColorFor(backgroundColor: Color) =
 
 internal val LocalColors = staticCompositionLocalOf { lightColors() }
 internal val LocalContentColor = compositionLocalOf { Color.Black }
+internal val LocalContentAlpha = compositionLocalOf { 1f }
