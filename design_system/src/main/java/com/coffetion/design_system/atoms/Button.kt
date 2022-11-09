@@ -1,9 +1,6 @@
 package com.coffetion.design_system.atoms
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,6 +16,7 @@ fun Button(
     enabled: Boolean = true,
     shape: Shape = CoffetionTheme.shapes.medium,
     color: Color = CoffetionTheme.colors.primary,
+    contentPadding: PaddingValues = PaddingValues(horizontal = 15.dp, vertical = 10.dp),
     content: @Composable RowScope.() -> Unit
 ) {
     Surface(
@@ -30,7 +28,7 @@ fun Button(
     ) {
         ProvideTextStyle(style = CoffetionTheme.typography.title2) {
             Row(
-                modifier = modifier.padding(horizontal = 15.dp, vertical = 10.dp),
+                modifier = modifier.padding(contentPadding),
                 horizontalArrangement = Arrangement.Center,
                 verticalAlignment = Alignment.CenterVertically
             ) {
