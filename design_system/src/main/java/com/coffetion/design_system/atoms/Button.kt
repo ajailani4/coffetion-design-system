@@ -1,5 +1,6 @@
 package com.coffetion.design_system.atoms
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -15,6 +16,7 @@ fun Button(
     onClick: () -> Unit,
     enabled: Boolean = true,
     shape: Shape = CoffetionTheme.shapes.medium,
+    border: BorderStroke? = null,
     color: Color = CoffetionTheme.colors.primary,
     contentPadding: PaddingValues = PaddingValues(horizontal = 15.dp, vertical = 10.dp),
     content: @Composable RowScope.() -> Unit
@@ -24,6 +26,7 @@ fun Button(
         onClick = onClick,
         enabled = enabled,
         shape = shape,
+        border = border,
         color = color
     ) {
         ProvideTextStyle(style = CoffetionTheme.typography.title2) {
