@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.SemanticsModifier
 import androidx.compose.ui.semantics.semantics
 import com.coffetion.design_system.theme.CoffetionTheme
 import com.coffetion.design_system.theme.LocalContentColor
@@ -27,41 +28,37 @@ fun Surface(
     onClick: () -> Unit,
     enabled: Boolean = true,
     shape: Shape = RectangleShape,
+    border: BorderStroke? = null,
     color: Color = CoffetionTheme.colors.white,
     contentColor: Color = contentColorFor(color),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable () -> Unit
 ) {
-    CompositionLocalProvider(
-        LocalContentColor provides contentColor
-    ) {
-        Box(
-            modifier = modifier
-                .background(
-                    color = color,
-                    shape = shape
-                )
-                .clip(shape)
-                .clickable(
-                    interactionSource = interactionSource,
-                    indication = null,
-                    enabled = enabled,
-                    role = Role.Button,
-                    onClick = onClick
-                )
-        ) {
-            content()
-        }
-    }
+    Surface(
+        modifier = modifier,
+        shape = shape,
+        border = border,
+        color = color,
+        contentColor = contentColor,
+        clickAndSemanticsModifier = Modifier.clickable(
+            interactionSource = interactionSource,
+            indication = null,
+            enabled = enabled,
+            role = Role.Button,
+            onClick = onClick
+        ),
+        content = content
+    )
 }
 
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
     shape: Shape = RectangleShape,
+    border: BorderStroke? = null,
     color: Color = CoffetionTheme.colors.white,
     contentColor: Color = contentColorFor(color),
-    border: BorderStroke? = null,
+    clickAndSemanticsModifier: Modifier,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
@@ -75,8 +72,7 @@ fun Surface(
                     shape = shape
                 )
                 .clip(shape)
-                .semantics(mergeDescendants = false) {}
-                .pointerInput(Unit) {},
+                .then(clickAndSemanticsModifier),
             propagateMinConstraints = true
         ) {
             content()
