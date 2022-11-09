@@ -6,9 +6,9 @@ import androidx.compose.runtime.ReadOnlyComposable
 
 @Composable
 fun CoffetionTheme(
-    colors: CoffetionColors,
-    typography: CoffetionTypography,
-    shapes: CoffetionShapes,
+    colors: CoffetionColors = CoffetionTheme.colors,
+    typography: CoffetionTypography = CoffetionTheme.typography,
+    shapes: CoffetionShapes = CoffetionTheme.shapes,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(

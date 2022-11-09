@@ -17,7 +17,7 @@ import com.coffetion.design_system.theme.LocalContentColor
 fun Text(
     modifier: Modifier = Modifier,
     text: String,
-    color: Color,
+    color: Color = Color.Unspecified,
     style: TextStyle = CoffetionTheme.typography.body1,
     textAlign: TextAlign? = null
 ) {
@@ -39,8 +39,8 @@ fun Text(
 val LocalTextStyle = compositionLocalOf { TextStyle.Default }
 
 @Composable
-fun ProvideTextStyle(value: TextStyle, content: @Composable () -> Unit) {
-    val mergedStyle = LocalTextStyle.current.merge(value)
+fun ProvideTextStyle(style: TextStyle, content: @Composable () -> Unit) {
+    val mergedStyle = LocalTextStyle.current.merge(style)
     CompositionLocalProvider(
         LocalTextStyle provides mergedStyle,
         content = content
