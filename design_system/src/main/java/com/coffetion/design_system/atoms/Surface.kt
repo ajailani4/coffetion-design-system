@@ -1,6 +1,8 @@
 package com.coffetion.design_system.atoms
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
@@ -59,6 +61,7 @@ fun Surface(
     shape: Shape = RectangleShape,
     color: Color = CoffetionTheme.colors.white,
     contentColor: Color = contentColorFor(color),
+    border: BorderStroke? = null,
     content: @Composable () -> Unit
 ) {
     CompositionLocalProvider(
@@ -66,6 +69,7 @@ fun Surface(
     ) {
         Box(
             modifier = modifier
+                .then(if (border != null) Modifier.border(border, shape) else Modifier)
                 .background(
                     color = color,
                     shape = shape
