@@ -13,6 +13,7 @@ class CoffetionColors(
     success: Color,
     error: Color,
     white: Color,
+    white2: Color,
     black: Color
 ) {
     var primary by mutableStateOf(primary)
@@ -29,6 +30,8 @@ class CoffetionColors(
         internal set
     var white by mutableStateOf(white)
         internal set
+    var white2 by mutableStateOf(white2)
+        internal set
     var black by mutableStateOf(black)
         internal set
 }
@@ -41,6 +44,7 @@ fun lightColors(
     success: Color = Color(0xFF29AF1C),
     error: Color = Color(0xFFB21F1F),
     white: Color = Color(0xFFF8F8F8),
+    white2: Color = Color(0xFFDCDCDC),
     black: Color = Color(0xFF2A2A2A)
 ): CoffetionColors = CoffetionColors(
     primary,
@@ -50,6 +54,7 @@ fun lightColors(
     success,
     error,
     white,
+    white2,
     black
 )
 
