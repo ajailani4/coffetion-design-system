@@ -48,15 +48,15 @@ class CoffetionTypography internal constructor(
         ),
         body1: TextStyle = TextStyle(
             fontWeight = FontWeight.Normal,
-            fontSize = 12.sp
+            fontSize = 14.sp
         ),
         body2: TextStyle = TextStyle(
             fontWeight = FontWeight.Normal,
-            fontSize = 10.sp
+            fontSize = 12.sp
         ),
         overline: TextStyle = TextStyle(
             fontWeight = FontWeight.Normal,
-            fontSize = 8.sp
+            fontSize = 10.sp
         )
     ) : this(
         h1 = h1.withDefaultFontFamily(defaultFontFamily),

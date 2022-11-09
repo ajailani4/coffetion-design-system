@@ -15,15 +15,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CoffetionTheme {
-                val (text, setText) = remember { mutableStateOf("") }
                 
-                TextField(
-                    value = text,
-                    onValueChange = setText,
-                    placeholder = {
-                        Text(text = "Username")
-                    }
-                )
             }
         }
     }
