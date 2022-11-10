@@ -25,6 +25,35 @@ import com.coffetion.design_system.theme.contentColorFor
 @Composable
 fun Surface(
     modifier: Modifier = Modifier,
+    shape: Shape = RectangleShape,
+    border: BorderStroke? = null,
+    color: Color = CoffetionTheme.colors.white,
+    contentColor: Color = contentColorFor(color),
+    clickAndSemanticsModifier: Modifier,
+    content: @Composable () -> Unit
+) {
+    CompositionLocalProvider(
+        LocalContentColor provides contentColor
+    ) {
+        Box(
+            modifier = modifier
+                .then(if (border != null) Modifier.border(border, shape) else Modifier)
+                .background(
+                    color = color,
+                    shape = shape
+                )
+                .clip(shape)
+                .then(clickAndSemanticsModifier),
+            propagateMinConstraints = true
+        ) {
+            content()
+        }
+    }
+}
+
+@Composable
+fun Surface(
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
     enabled: Boolean = true,
     shape: Shape = RectangleShape,
@@ -58,24 +87,17 @@ fun Surface(
     border: BorderStroke? = null,
     color: Color = CoffetionTheme.colors.white,
     contentColor: Color = contentColorFor(color),
-    clickAndSemanticsModifier: Modifier,
     content: @Composable () -> Unit
 ) {
-    CompositionLocalProvider(
-        LocalContentColor provides contentColor
-    ) {
-        Box(
-            modifier = modifier
-                .then(if (border != null) Modifier.border(border, shape) else Modifier)
-                .background(
-                    color = color,
-                    shape = shape
-                )
-                .clip(shape)
-                .then(clickAndSemanticsModifier),
-            propagateMinConstraints = true
-        ) {
-            content()
-        }
-    }
+    Surface(
+        modifier = modifier,
+        shape = shape,
+        border = border,
+        color = color,
+        contentColor = contentColor,
+        clickAndSemanticsModifier = Modifier
+            .semantics(mergeDescendants = false) {}
+            .pointerInput(Unit) {},
+        content = content
+    )
 }
