@@ -1,5 +1,6 @@
 package com.coffetion.design_system.molecules
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
@@ -23,6 +24,8 @@ fun LabeledTextField(
     onValueChange: (String) -> Unit,
     enabled: Boolean = true,
     shape: Shape = CoffetionTheme.shapes.large,
+    border: BorderStroke? = null,
+    backgroundColor: Color = CoffetionTheme.colors.white,
     label: String,
     labelTextColor: Color = CoffetionTheme.colors.black,
     labelTextStyle: TextStyle = CoffetionTheme.typography.body2,
@@ -48,6 +51,8 @@ fun LabeledTextField(
             onValueChange = onValueChange,
             enabled = enabled,
             shape = shape,
+            border = border,
+            backgroundColor = backgroundColor,
             textStyle = textStyle,
             placeholder = placeholder,
             leadingIcon = leadingIcon,
