@@ -3,15 +3,25 @@ package com.coffetion.app
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.coffetion.app.ui.theme.CoffetionDesignSystemTheme
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.tooling.preview.Preview
+import com.coffetion.design_system.theme.CoffetionTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            CoffetionDesignSystemTheme {
+            CoffetionTheme {
 
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewMain() {
+    CoffetionTheme {
+
     }
 }
