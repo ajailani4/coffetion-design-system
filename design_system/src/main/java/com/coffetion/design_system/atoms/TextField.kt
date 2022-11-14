@@ -1,6 +1,8 @@
 package com.coffetion.design_system.atoms
 
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -9,6 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.takeOrElse
@@ -28,6 +31,8 @@ fun TextField(
     onValueChange: (String) -> Unit,
     enabled: Boolean = true,
     shape: Shape = CoffetionTheme.shapes.large,
+    border: BorderStroke? = null,
+    backgroundColor: Color = CoffetionTheme.colors.white,
     textStyle: TextStyle = CoffetionTheme.typography.body1,
     placeholder: @Composable (() -> Unit)? = null,
     leadingIcon: @Composable (() -> Unit)? = null,
@@ -47,8 +52,9 @@ fun TextField(
 
     BasicTextField(
         modifier = modifier
+            .then(if (border != null) Modifier.border(border, shape) else Modifier)
             .background(
-                color = CoffetionTheme.colors.white,
+                color = backgroundColor,
                 shape = shape
             )
             .defaultMinSize(
